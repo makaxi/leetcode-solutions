@@ -51,6 +51,6 @@ public class Solution {
 }
 
  /*
-Time Complexity: O(n). Best case we iterate to the end of the list in n/2 time. Worst case O(n^2)
-Space Complexity: O(1). Only 2 ListNodes are created to keep track of where we are in the loop
+Time Complexity: O(n). Best case we iterate to the end of the list in n/2 time. Worst case would be slow pointer iterates through the end before it merges with fast pointer O(n).
+Space Complexity: O(1). Only 2 ListNodes are created to keep track of where we are in the loop.
  */
