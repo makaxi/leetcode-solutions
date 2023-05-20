@@ -35,3 +35,7 @@ class Solution {
       node.right = temp;
     }
 }
+/*
+Time Complexity: O(n). Must traverse through entire tree to invert all children nodes.
+Space Complexity: O(h) => O(n). We only create a new ListNode to temporary save a value while we overwrite it which is constant time. Since we are using recursion, the callstack will contain at most h(height of the tree) function calls
+*/
