@@ -19,23 +19,25 @@
  * }
  */
 class Solution {
-    public TreeNode invertTree(TreeNode root) {
-    	postOrder(root);
-      return root;
-    }
-    
-    public void postOrder(TreeNode node) {
-    	if(node == null) return;      
-      postOrder(node.left);
-      postOrder(node.right);
-      
-      TreeNode temp = node.left;
+  public TreeNode invertTree(TreeNode root) {
+    if(root == null) return root;
+    Queue<TreeNode> q = new LinkedList<>();
+    q.add(root);
+    TreeNode node = new TreeNode();
+    do{
+      node = q.poll();
+      if(node == null) continue;
+      q.add(node.left);
+      q.add(node.right);
+      TreeNode save = node.left;
       node.left = node.right;
-      node.right = temp;
-    }
+      node.right = save;
+    }while(!q.isEmpty());
+    return root;
+  }
 }
 
 /*
 Time Complexity: O(n). Must traverse through entire tree to invert all children nodes.
-Space Complexity: O(h) => O(n). We only create a new ListNode to temporary save a value while we overwrite it which is constant time. Since we are using recursion, the callstack will contain at most h(height of the tree) function calls
+Space Complexity: O(n). We need to push every node on the queue to be inverted.
 */
