@@ -1,5 +1,13 @@
 /*
- * 104. Maximum Depth of Binary Tree
+ 104. Maximum Depth of Binary Tree\
+ 
+ Example 1:
+Input: root = [3,9,20,null,null,15,7]
+Output: 3
+
+Example 2:
+Input: root = [1,null,2]
+Output: 2
  */
 
 /**
@@ -33,6 +41,6 @@ class Solution {
 }
 
  /*
-Time Complexity: O(n). We need to traverse through all nodes in order to ensure we are going down the path with the most depth
+Time Complexity: O(n). We need to traverse through all nodes in order to ensure we are going down the path with the most depth.
 Space Complexity: O(h) -> O(n). Since we are solving this recursively, the call stack will have a most h function calls when we reach the max depth.
   */
