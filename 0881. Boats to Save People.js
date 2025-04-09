@@ -21,35 +21,29 @@ Output: 4
 Explanation: 4 boats (3), (3), (4), (5)
 */
 
-
 /**
  * @param {number[]} people
  * @param {number} limit
  * @return {number}
  */
 var numRescueBoats = function(people, limit) {
-    let numBoats = 0;
-    // sort people array
     people.sort((a,b) => a - b);
-    console.log(people);
 
+    let numBoats = 0;
     let left = 0;
     let right = people.length - 1;
+    
     while(left <= right){
-        if(people[right] === limit) {
+        if(people[right] === limit || people[right] + people[left] > limit) {
             numBoats++;
             right--;
         }
-        else if(people[right] + people[left] === limit){
+        else if(people[right] + people[left] === limit || people[right] + people[left] < limit){
             numBoats++;
             right--;
             left++;
         }
-        else if(people[right] + people[left] > limit){
-            numBoats++;
-            right--;
-        }
-        else if(right === left) return numBoats+1;
+        else return numBoats+1;
     }
     return numBoats;
 };
