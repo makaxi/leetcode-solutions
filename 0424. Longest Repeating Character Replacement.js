@@ -24,37 +24,40 @@ s consists of only uppercase English letters.
 0 <= k <= s.length
 */
 
-/*
-* @param {string} s
-* @param {number} k
-* @return {number}
-*/
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {number}
+ */
 var characterReplacement = function(s, k) {
-    console.log(s);
-   let originalK = k;
-   let solution = 0;
-   let length = 0;
-   let left = 0; right = 0; last = 0;
-   let i = 1;
-   while(i < s.length){
-       if(s[i] === s[i-1])length++;
-       else if(k > 0){
-           k--;
-           length++;
-           last = i;
-       }
-       else if(k <= 0){
-           i = last;
-           k = originalK;
-       }
-       solution = Math.max(length, solution);
-       i++;
-   }
+    let map = new Map();
 
-   return solution;
+    let l = 0, r = 0;
+    let mostFreqChar = 0;
+    let maxLength = 0;
+
+    while (r < s.length){
+            let count = map.has(s[r]) ? map.get(s[r]) + 1 : 1; 
+            map.set(s[r], count) 
+            if(map.get(s[r]) > mostFreqChar) mostFreqChar = map.get(s[r]);
+
+        while(r-l+1 - mostFreqChar > k){
+            let decCount = map.get(s[l]) - 1;
+            map.set(s[l], decCount);
+            l++;
+        }
+        
+        maxLength = Math.max(r-l+1, maxLength);
+        r++;
+    }
+
+    return maxLength;
 };
 
+//characterReplacement("AABABBA", 2);
+characterReplacement("AAAB", 0);
+
 /*
- * Time Complexity: 
- * Space Complexity:
+ * Time Complexity: O(n). Since we are using a sliding window, we only need to iterate through the s once. We save time by using keeping track of the mostFreqChar instead of iteratively checking our map for the char with the most appearances. We can do this because we do not care if it decrements since we are only checking if a current substring is longer than one we found before. 
+ * Space Complexity: O(m) where m is the number of unique elements in the string. We use a map to store the count of each unique element.
  */
