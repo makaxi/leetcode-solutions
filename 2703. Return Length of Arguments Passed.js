@@ -42,6 +42,6 @@ var argumentsLength = function(...args) {
  */
 
 /*
- * Time Complexity: O().
- * Space Complexity: O().
+ * Time Complexity: O(n). Need to iterate through the whole array
+ * Space Complexity: O(1). No extra space is used if we are popping from the given array
  */

@@ -56,6 +56,6 @@ var once = function(fn) {
  */
 
 /*
- * Time Complexity: O().
- * Space Complexity: O().
+ * Time Complexity: O(n). We still need to call the function on each argument
+ * Space Complexity: O(1). One variable is used in a closure to track if it's the first call
  */
